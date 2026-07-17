@@ -145,7 +145,7 @@ export default function Hero({ onOpenCvModal }: HeroProps) {
               <div className="w-full h-full rounded-2xl overflow-hidden bg-[#0a0d16] relative">
                 {/* Real-time Generated Profile Portrait! */}
                 <img 
-                  src="/src/assets/images/pasindu_profile_1784088279687.jpg" 
+                  src="/pasindu_profile_1784088279687.jpg" 
                   alt={PERSONAL_DETAILS.name}
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
