@@ -145,14 +145,21 @@ function ContactForm({ addToast, simulateCrash, setSimulateCrash }: ContactFormP
         body: JSON.stringify(formData)
       });
 
-      const data = await res.json();
-      if (res.ok && data.success) {
+      const contentType = res.headers.get("content-type") || "";
+      const data = contentType.includes("application/json") ? await res.json() : null;
+
+      if (res.ok && data?.success) {
         setStatus("success");
         setStatusMsg(data.message || "Thank you! Your message has been sent successfully.");
         addToast("success", "Message Sent!", data.message || "Your email was successfully sent.");
         setFormData({ name: "", email: "", subject: "", message: "" });
+      } else if (res.ok) {
+        setStatus("success");
+        setStatusMsg("Thank you! Your message was received.");
+        addToast("success", "Message Sent!", "Your message was received successfully.");
+        setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
-        throw new Error(data.error || "Form submission failed");
+        throw new Error(data?.error || "Form submission failed");
       }
     } catch (err: any) {
       console.error("Contact form dispatch error:", err);

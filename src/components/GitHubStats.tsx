@@ -135,7 +135,7 @@ export default function GitHubStats() {
         <div className="lg:col-span-5 flex flex-col items-start gap-4">
           <div className="flex items-center gap-4">
             <img 
-              src={profile?.avatar_url || "/src/assets/images/pasindu_profile_1784088279687.jpg"} 
+              src={profile?.avatar_url || "/pasindu_profile_1784088279687.jpg"} 
               alt={profile?.name || "Pasindu"} 
               className="w-16 h-16 rounded-2xl border-2 border-indigo-500/30 object-cover"
             />

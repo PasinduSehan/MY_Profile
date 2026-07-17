@@ -157,7 +157,7 @@ CONVERSATION STYLE:
       followers: 12,
       following: 15,
       bio: "Software Engineer | Full Stack Developer specializing in React, Node.js, Flutter, and AI solutions.",
-      avatar_url: "/src/assets/images/pasindu_profile_1784088279687.jpg",
+      avatar_url: "/pasindu_profile_1784088279687.jpg",
     };
 
     const fallbackRepos = [
