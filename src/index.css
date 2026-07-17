@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float-slow 10s ease-in-out infinite;
+  --animate-pulse-subtle: pulse-subtle 4s ease-in-out infinite;
+  --animate-glow: glow 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(2deg); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+  50% { transform: translateY(-30px) rotate(-3deg) scale(1.05); }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.1); }
+}
+
+@keyframes glow {
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.2)); }
+  50% { filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.4)); }
+}
+
+/* Global CSS reset for natural, smooth page-wide scrolling */
+html {
+  background-color: #030406; /* Default dark background to prevent white flashing */
+}
+
+html.dark, html.dark body {
+  background-color: #030406 !important;
+}
+
+html.light, html.light body {
+  background-color: #f5f6fa !important;
+}
+
+html, body {
+  min-height: 100%;
+  overflow-x: hidden !important;
+  scroll-behavior: smooth;
+}
+
+body.modal-open, html.modal-open {
+  overflow: hidden !important;
+}
+
+/* Custom styles for dark and light modes */
+body {
+  font-family: var(--font-sans);
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Glassmorphism Styles */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.light .glass {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.glass-premium {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+.light .glass-premium {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
+}
+
+/* Neumorphism Styles */
+.neumorphism {
+  box-shadow: 12px 12px 24px #0c0f17, -12px -12px 24px #1c2131;
+}
+
+.light .neumorphism {
+  box-shadow: 12px 12px 24px #d1d5db, -12px -12px 24px #ffffff;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #030712;
+}
+
+.light ::-webkit-scrollbar-track {
+  background: #f9fafb;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1f2937;
+  border-radius: 9999px;
+  border: 2px solid transparent;
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4f46e5;
+}
+
+/* Grid overlay background */
+.grid-bg {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+.light .grid-bg {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+}
+
+/* Glow lines */
+.glow-border {
+  position: relative;
+}
+
+.glow-border::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(to bottom right, var(--color-indigo-500), transparent, var(--color-cyan-500));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Hide cursor on desktop when using custom cursor */
+@media (min-width: 1024px) {
+  .custom-cursor-active,
+  .custom-cursor-active * {
+    cursor: none !important;
+  }
+
+  /* Restore default system cursor inside modals, chatbots, and overlays for perfect usability and safety */
+  .custom-cursor-active .fixed.inset-0,
+  .custom-cursor-active .fixed.inset-0 *,
+  .custom-cursor-active .fixed.bottom-24,
+  .custom-cursor-active .fixed.bottom-24 *,
+  .custom-cursor-active [role="dialog"],
+  .custom-cursor-active [role="dialog"] * {
+    cursor: default !important;
+  }
+
+  .custom-cursor-active .fixed.inset-0 button,
+  .custom-cursor-active .fixed.inset-0 a,
+  .custom-cursor-active .fixed.inset-0 [role="button"],
+  .custom-cursor-active .fixed.inset-0 input,
+  .custom-cursor-active .fixed.inset-0 textarea,
+  .custom-cursor-active .fixed.bottom-24 button,
+  .custom-cursor-active .fixed.bottom-24 a,
+  .custom-cursor-active .fixed.bottom-24 [role="button"],
+  .custom-cursor-active .fixed.bottom-24 input,
+  .custom-cursor-active .fixed.bottom-24 textarea {
+    cursor: pointer !important;
+  }
+}
+
+/* Professional Print Stylesheet */
+@media print {
+  body, html {
+    background: #ffffff !important;
+    color: #1e293b !important;
+    font-size: 11px !important;
+    overflow: visible !important;
+  }
+  
+  /* Hide every part of the web portfolio during printing */
+  #root > *:not(#printable-cv-document),
+  body > *:not(#printable-cv-document),
+  nav, footer, .print\:hidden, [role="dialog"], button {
+    display: none !important;
+  }
+
+  /* Make sure the CV Document displays completely as a single clean flow page or double page */
+  #printable-cv-document {
+    display: grid !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    min-height: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #ffffff !important;
+    color: #1e293b !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Prevent page breaks inside critical elements */
+  h1, h2, h3, h4, .relative, ul, li {
+    page-break-inside: avoid !important;
+  }
+}
+
